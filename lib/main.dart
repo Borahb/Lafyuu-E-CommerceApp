@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lafyuu/Screens/HomeScreen/home_screen.dart';
 import 'package:lafyuu/Screens/SplashScreen/splashscreen.dart';
+
 
 
 void main() {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: HomeScreen()
     );
   }
 }
