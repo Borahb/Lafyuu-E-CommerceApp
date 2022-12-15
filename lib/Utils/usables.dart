@@ -5,6 +5,7 @@ class Usables {
 
  AppColors colors = AppColors();
 
+// Category Card
   Widget categoryCard (String image, String product) => Column(
       children: [
         CircleAvatar(
@@ -26,8 +27,8 @@ class Usables {
       ],
     );
 
-
-    Widget resuablerow (String name1, String name2) => Padding(
+// Resuable Row
+  Widget resuablerow (String name1, String name2) => Padding(
         padding: const EdgeInsets.only(left: 16,right:16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +47,8 @@ class Usables {
         ),
       );
 
-    Widget productcard (String image) => Container(
+// Product Card
+  Widget productcard (String image) => Container(
       height:231 ,
       width: 141,
       
@@ -96,8 +98,8 @@ class Usables {
       ),
     );
 
-
-    Widget productcard2 (String image) => Container(
+// Product Card 2
+  Widget productcard2 (String image) => Container(
       height:282 ,
       width: 165,
       
@@ -146,4 +148,57 @@ class Usables {
         ),
       ),
     );
+
+// Banner
+  Widget banner (PageController pageController,int pageno,ValueChanged<int> onchanged,) => Column(
+      children: [
+        GestureDetector(
+          onTap: (){},
+          child: const SizedBox(height: 16,)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16,right:16),
+                    child: SizedBox(
+                      height:206,                      
+                      child: PageView.builder(
+                        onPageChanged: onchanged,
+                        controller:pageController,
+                        itemCount: 5,
+                        itemBuilder: (context,index){
+                          return AnimatedBuilder(                        
+                            animation: pageController, 
+                            builder: (context,child){
+                              return child!;
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              //margin:const EdgeInsets.all(),
+                              height: 206,
+                              child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
+                              
+                            ),
+                            );
+                        },
+                        
+                        ),
+                    ),
+                  ),
+                  const SizedBox(height: 16,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:List.generate(5, 
+                    (index) => Container(
+                      margin: const EdgeInsets.all(4.0),
+                      child: Icon(Icons.circle,
+                      size: 12,
+                      color: pageno == index ? colors.backgroundcolor : colors.light,
+                      ),
+                    )
+                    )
+                  ),
+      ],
+    );
+
+
 }

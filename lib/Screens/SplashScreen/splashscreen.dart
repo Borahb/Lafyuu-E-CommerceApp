@@ -4,16 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lafyuu/Screens/LoginScreen/login_bloc.dart';
 import 'package:lafyuu/Screens/LoginScreen/loginscreen.dart';
+import 'package:lafyuu/Utils/Services/state_services.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  final StateService stateService;
 
+  const SplashScreen({Key? key, required this.stateService}) : super(key: key);
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     Timer(const Duration(seconds: 4), () {
@@ -21,8 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           MaterialPageRoute(
               builder: (context) => BlocProvider(
-                    create: (context) => LoginBloc(),
-                    child: LoginScreen(),
+                    create: (context) => LoginBloc(stateService: widget.stateService, authenticationBloc: BlocProvider.of<AuthenticationBloc>(context)
+                    ),
+                    child: LoginScreen(stateService: widget.stateService),
                   )));
     });
     super.initState();

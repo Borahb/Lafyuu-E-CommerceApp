@@ -4,11 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Utils/colors.dart';
-
-
 import 'package:lafyuu/Utils/usables.dart';
+import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
+import 'package:lafyuu/bloc/auth_bloc/auth_event.dart';
 
 
 
@@ -20,15 +21,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   FocusNode search = FocusNode();
-
   AppColors colors = AppColors();
-
   TextEditingController searchcontroller = TextEditingController();
-
   Usables usables = Usables();
-
   int _currentindex = 0;
+  int pageno = 0;
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   
                   const SizedBox(height: 16,),
 
+                  // search bar
                   Padding(
                     padding: const EdgeInsets.only(left: 16,right:16),
                     child: Row(
@@ -124,11 +125,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           icon: SvgIconData('images/love.svg')
                           ),
                         const SizedBox(width: 16,),
-                        SvgIcon(
-                          size: 24,
-                          color:colors.textcolor1,
-                          icon: SvgIconData('images/Notification.svg')
-                          )
+                        GestureDetector(
+                          onTap: (){
+                            BlocProvider.of<AuthenticationBloc>(context).add(
+                              LoggedOut()
+                            );
+                          },
+                          child: SvgIcon(
+                            size: 24,
+                            color:colors.textcolor1,
+                            icon: SvgIconData('images/Notification.svg')
+                            ),
+                        )
 
 
                       ],
@@ -140,18 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 16,
                     child: Divider(),
                     ),
+                  
                   // horizontal scrollable view
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Expanded(
-                      child: Container(
-                        height:206,
-                        
-                        
-                        child: Image.asset('images/Offer Banner.jpg'),
-                      ),
-                    ),
+
+                  usables.banner(
+                  pageController,
+                  pageno,
+                  (index){
+                          pageno = index;
+                          setState(() {
+                            
+                          });
+                        }
                   ),
+
                   Container(height:48),
         
                   usables.resuablerow('Category','More Category'),
@@ -181,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
         
                 const SizedBox(height: 24,),
         
-                Container(
+                SizedBox(
                   height: 271,
                   width: 455,
                   child: Column(
@@ -209,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 21,),
 
-                Container(
+                SizedBox(
                   height: 271,
                   width: 455,
                   child: Column(
@@ -238,12 +248,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const SizedBox(height: 9,),
 
-                Container(
-                  width: 343,
+                SizedBox(
+                  //width: 343,
                   height: 206,
                   child: Stack(
                     children:[
-                      Image.asset('images/image 51.jpg'),
+                      Container(
+                        //decoration: BoxDecoration(),
+                        height: 206,
+                        child: Image.asset('images/image 51.jpg', fit:BoxFit.fill)
+                        ),
                       Positioned(
                         top: 48,
                         left:24,

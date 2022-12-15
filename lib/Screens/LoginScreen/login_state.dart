@@ -1,12 +1,20 @@
+// ignore_for_file: camel_case_types
 abstract class LoginState {}
 
-class Login_Initialstate extends LoginState{}
+class LoginInitial extends LoginState{}
 
 
-class LogIn_Invalidstate extends LoginState {}
+class LogIn_validstate extends LoginState {}
 
+class LoginFailure extends LoginState {
+  final String error;
+  LoginFailure({required this.error});
 
-class LogIn_validstate extends LoginState {
+  @override
+  List<Object> get props => [error];
+
+  @override
+  String toString() => 'LoginFailure {$error}';
 
 }
 
@@ -24,11 +32,8 @@ class Pass_errorstate extends LogIn_errorstate{
 
 }
 
+class Login_successstate extends LoginState{}
 
-// class LogIn_errorstate extends LoginState {
-//   String errormsg;
-//   LogIn_errorstate(this.errormsg);
-// }
+class Login_failedstate extends LoginState{}
 
-
-class LogIn_loadingstate extends LoginState{}
+class LoginLoading extends LoginState{}
