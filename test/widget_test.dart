@@ -7,13 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lafyuu/Utils/Services/state_services.dart';
 
 import 'package:lafyuu/main.dart';
 
 void main() {
+  final  stateService = StateService();
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(stateService: stateService,));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

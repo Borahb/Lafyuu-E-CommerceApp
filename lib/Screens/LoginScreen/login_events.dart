@@ -1,3 +1,5 @@
+
+// ignore_for_file: camel_case_types
 abstract class LoginEvents {}
 
 
@@ -11,5 +13,12 @@ class Login_textchangeevent extends LoginEvents{
 class Login_Submitted extends LoginEvents{
   String email;
   String password;
-  Login_Submitted(this.email, this.password);
+  Login_Submitted({required this.email,required this.password});
+
+  @override
+  List<Object> get props =>[email,password];
+
+  @override
+  String toString() => 'LoginSubmitted {email: $email, password : $password}';
 }
+
