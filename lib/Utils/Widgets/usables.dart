@@ -161,7 +161,7 @@ class Usables {
                       height:206,                      
                       child: PageView.builder(
                         onPageChanged: onchanged,
-                        controller:pageController,
+                        controller: pageController,
                         itemCount: 5,
                         itemBuilder: (context,index){
                           return AnimatedBuilder(                        
@@ -169,14 +169,17 @@ class Usables {
                             builder: (context,child){
                               return child!;
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right:8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                //margin:const EdgeInsets.all(),
+                                height: 206,
+                                child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
+                                
                               ),
-                              //margin:const EdgeInsets.all(),
-                              height: 206,
-                              child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
-                              
                             ),
                             );
                         },

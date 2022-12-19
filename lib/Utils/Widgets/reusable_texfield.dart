@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/Utils/validator.dart';
 
 
 
@@ -32,6 +33,14 @@ class _ResubaleTextfieldState extends State<ResubaleTextfield> {
     return  Padding(
         padding: const EdgeInsets.only(left:16, right: 16,),
         child: TextFormField(
+          validator: (value){
+              if (EmailValid.validate(value.toString()) == false){
+                  return 'Enter a valid Email';
+              }
+              if (value!.isEmpty){
+                return "Enter Email";
+              }
+          },
           obscureText: widget.obscuretext ,
           focusNode: widget.focusnode,
           onChanged: widget.onchanged,

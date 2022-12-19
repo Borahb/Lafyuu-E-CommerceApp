@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lafyuu/Screens/LoginScreen/login_bloc.dart';
-import 'package:lafyuu/Screens/LoginScreen/login_events.dart';
-import 'package:lafyuu/Screens/LoginScreen/login_state.dart';
+import 'package:lafyuu/Utils/Widgets/passwordtextfield.dart';
+import 'package:lafyuu/bloc/auth_bloc/loginbloc/login_bloc.dart';
+import 'package:lafyuu/bloc/loginbloc/login_events.dart';
+import 'package:lafyuu/bloc/loginbloc/login_state.dart';
 import 'package:lafyuu/Utils/Services/state_services.dart';
 import 'package:lafyuu/Utils/colors.dart';
-import 'package:lafyuu/Utils/resubalebutton1.dart';
-import 'package:lafyuu/Utils/reusable_texfield.dart';
+import 'package:lafyuu/Utils/Widgets/resubalebutton1.dart';
+import 'package:lafyuu/Utils/Widgets/reusable_texfield.dart';
+import 'package:lafyuu/bloc/loginbloc/login_state.dart';
 
 
 
@@ -29,7 +31,7 @@ class _LoginFormState extends State<LoginForm> {
   FocusNode passf2 = FocusNode () ;
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
-
+  final formkey = GlobalKey<FormState>();
 
 
   @override
@@ -47,6 +49,7 @@ class _LoginFormState extends State<LoginForm> {
     child: BlocBuilder<LoginBloc,LoginState>(builder: (context, state){
             return SingleChildScrollView(
               child: Form(
+                key:formkey,
                 child: Center(
                   child: Column(
               children: [
@@ -89,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                   
                   Container(height: 8),
                   
-                  ResubaleTextfield(
+                  ResubaleTextfield2(
                         obscuretext: true,
                         focusnode: passf2,
                         onchanged: (value) {
@@ -143,10 +146,15 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                             ),
                             onPressed: () {
-                            
+                              if( formkey.currentState!.validate()){
+                                
                             BlocProvider.of<LoginBloc>(context).add(
                             Login_Submitted(email:emailcontroller.text,
                             password: passwordcontroller.text));
+                              
+                              }
+                            
+                            
                               
                             }),
                   ),
@@ -188,6 +196,8 @@ class _LoginFormState extends State<LoginForm> {
                     text: 'Login with Google',
                   ),
 
+                  Container(height: 8),
+
                   ResubaleButton1(
                     textcolor: colors.textcolor1,
                     bordercolor: colors.light,
@@ -196,7 +206,7 @@ class _LoginFormState extends State<LoginForm> {
                     onpressed: () {},
                     text: 'Login with facebook',
                   ),
-                  
+                  Container(height: 8),
                   Text('Forgot Password ?',
                       style: TextStyle(
                           color: colors.backgroundcolor,

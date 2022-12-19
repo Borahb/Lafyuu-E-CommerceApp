@@ -1,8 +1,8 @@
 
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lafyuu/Screens/LoginScreen/login_events.dart';
-import 'package:lafyuu/Screens/LoginScreen/login_state.dart';
+import 'package:lafyuu/bloc/loginbloc/login_events.dart';
+import 'package:lafyuu/bloc/loginbloc/login_state.dart';
 import 'package:lafyuu/Utils/Services/state_services.dart';
 import 'package:lafyuu/Utils/validator.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors_in_immutables, import_of_legacy_library_into_null_safe
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +6,15 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
+import 'package:lafyuu/Utils/Widgets/categorycard.dart';
+import 'package:lafyuu/Utils/Widgets/gridviewcard.dart';
+import 'package:lafyuu/Utils/Widgets/productcard.dart';
 import 'package:lafyuu/Utils/colors.dart';
-import 'package:lafyuu/Utils/usables.dart';
+import 'package:lafyuu/Utils/Widgets/usables.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_event.dart';
+import 'package:lafyuu/models/categorymodel.dart';
+import 'package:lafyuu/models/productmodel.dart';
 
 
 
@@ -28,10 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Usables usables = Usables();
   int _currentindex = 0;
   int pageno = 0;
-  PageController pageController = PageController();
+  
+  
 
   @override
   Widget build(BuildContext context) {
+  
+  PageController pageController = PageController();
+
 
     return Scaffold(
 
@@ -95,9 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16,right:16),
                     child: Row(
+                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          width: 265 ,
+                          width: 290 ,
                           height: 46,
                           child: TextField(
                           
@@ -106,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide(
-                          color: colors.light
+                          color: Colors.grey.shade200
                             )
                             ),
                           border: OutlineInputBorder(
@@ -119,13 +129,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(width: 16,),
-                        SvgIcon(
-                          size: 24,
-                          color:colors.textcolor1,
-                          icon: SvgIconData('images/love.svg')
-                          ),
-                        const SizedBox(width: 16,),
-                        GestureDetector(
+                        Row(
+                          children: [
+                            SvgIcon(
+                              size: 24,
+                              color:colors.textcolor1,
+                              icon: const SvgIconData('images/love.svg')
+                              ),
+                              const SizedBox(width: 16,),
+                          GestureDetector(
                           onTap: (){
                             BlocProvider.of<AuthenticationBloc>(context).add(
                               LoggedOut()
@@ -134,9 +146,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: SvgIcon(
                             size: 24,
                             color:colors.textcolor1,
-                            icon: SvgIconData('images/Notification.svg')
+                            icon: const SvgIconData('images/Notification.svg')
                             ),
                         )
+                          ],
+                        ),
+                        
 
 
                       ],
@@ -156,8 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   pageno,
                   (index){
                           pageno = index;
-                          setState(() {
-                            
+                          setState(() {  
                           });
                         }
                   ),
@@ -171,20 +185,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                   padding: const EdgeInsets.only(left: 16,right:16),
                   child: SizedBox(
-                    height:150 ,
-                    child: ListView(
+                    height:167,
+                    child: ListView.builder(
+                      shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      children : [
-                        usables.categoryCard('images/shirt.png', 'Man Shirt'),
-                        const SizedBox(width: 12,),
-                        usables.categoryCard('images/dress.png', 'Dress'),
-                        const SizedBox(width: 12,),
-                        usables.categoryCard('images/man bag.png', 'Man Work\nEquipment'),
-                        const SizedBox(width: 12,),
-                        usables.categoryCard('images/woman bag.png', 'Woman Bag'),
-                        const SizedBox(width: 12,),
-                        usables.categoryCard('images/shirt.png', 'Shoe'),
-                      ]
+                      itemCount: CategoryItem.category.length,
+                      itemBuilder: (context, index){
+                        return CategoryCard(category: CategoryItem.category[index]);
+                      },
                     ),
                   ),
                 ),
@@ -200,17 +208,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 12,),
                       Padding(
                         padding: const EdgeInsets.only(left: 16,right:16),
-                        child: Container(
+                        child: SizedBox(
                           height: 240,
-                          child: ListView(
+                          child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            children: [
-                              usables.productcard('images/image Product.jpg'),
-                              const SizedBox(width: 12,),
-                              usables.productcard('images/image Product2.jpg'),
-                              const SizedBox(width: 12,),
-                              usables.productcard('images/image Product3.jpg'),
-                            ],
+                            itemCount: ProductModel.products.length,
+                            itemBuilder: (context,index){
+                              return ProductCard(product: ProductModel.products[index]);
+                            },
                           ),
                         ),
                       )
@@ -228,17 +233,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 12,),
                       Padding(
                         padding: const EdgeInsets.only(left: 16,right:16),
-                        child: Container(
+                        child: SizedBox(
                           height: 240,
-                          child: ListView(
+                          child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            children: [
-                              usables.productcard('images/mega1.jpg'),
-                              const SizedBox(width: 12,),
-                              usables.productcard('images/mega2.jpg'),
-                              const SizedBox(width: 12,),
-                              usables.productcard('images/mega3.jpg'),
-                            ],
+                            itemCount: ProductModel.products.length,
+                            itemBuilder: (context,index){
+                              return ProductCard(product: ProductModel.products[index]);
+                            },
                           ),
                         ),
                       )
@@ -246,18 +248,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 9,),
-
-                SizedBox(
-                  //width: 343,
-                  height: 206,
+                const SizedBox(height: 8,),
+                
+                // recomended product
+                Padding(
+                  padding: const EdgeInsets.only(left: 16,right:16),
                   child: Stack(
                     children:[
                       Container(
-                        //decoration: BoxDecoration(),
-                        height: 206,
-                        child: Image.asset('images/image 51.jpg', fit:BoxFit.fill)
+                        decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(5),
+                           image: const DecorationImage(
+                            image: AssetImage('images/image 51.jpg'),
+                            fit: BoxFit.fill,
+                            ),
+                           //color: colors.backgroundcolor
                         ),
+                        height: 206,
+                        
+                        ),         
                       Positioned(
                         top: 48,
                         left:24,
@@ -286,49 +295,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 16,),
+                const SizedBox(height: 21,),
 
                 Padding(
                   padding: const EdgeInsets.only(left: 16,right:16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                      usables.productcard2('images/ratep1.jpg'),
-                      const SizedBox(width: 16,),
-                      usables.productcard2('images/ratep2.jpg'),
-                    ]
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16,right:16,top:12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
-                      usables.productcard2('images/ratep3.jpg'),
-                      const SizedBox(width: 16,),
-                      usables.productcard2('images/image Product3.jpg'),
-                    ]
-                  ),
+                  child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap:true,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 13,
+                    mainAxisSpacing:12,
+                    mainAxisExtent: 290,
+                    
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (context,index){
+                      return GridCard(product: ProductModel.products[index]);
+                    },
+                    ),
                 ),
 
                 const SizedBox(height: 14,),
-
-
-                // GridView(
-                //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //   crossAxisCount: 2,
-                //   // crossAxisSpacing: 13,
-                //   // mainAxisSpacing:12
-                //   ),
-                //   children: [
-                //     usables.productcard('images/ratep1.jpg'),
-                //     usables.productcard('images/ratep2.jpg'),
-                //     usables.productcard('images/ratep3,jpg'),
-                //     usables.productcard('images/image Product3.jpg'),
-                //   ],
-                //   ),
-
-                
 
         
         
