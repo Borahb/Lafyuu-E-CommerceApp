@@ -1,0 +1,34 @@
+{
+    "products":[
+        {
+            "id": 1,
+            "image": "images/P1.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        },
+        {
+            "id": 2,
+            "image": "images/P2.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        },
+        {
+            "id": 3,
+            "image": "images/P3.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        },
+        {
+            "id": 4,
+            "image": "images/mega1.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        },
+        {
+            "id": 5,
+            "image": "images/mega3.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        },
+        {
+            "id": 6,
+            "image": "images/mega3.jpg", 
+            "name": "FS - Nike Air\nMax 270 React..."
+        }
+    ]
+}

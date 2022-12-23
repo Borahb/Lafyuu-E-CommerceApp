@@ -150,11 +150,9 @@ class Usables {
     );
 
 // Banner
-  Widget banner (PageController pageController,int pageno,ValueChanged<int> onchanged,) => Column(
+  Widget banner (PageController pageController,int pageno,ValueChanged<int> onchanged, VoidCallback ontap) => Column(
       children: [
-        GestureDetector(
-          onTap: (){},
-          child: const SizedBox(height: 16,)),
+        const SizedBox(height: 16,),
                   Padding(
                     padding: const EdgeInsets.only(left: 16,right:16),
                     child: SizedBox(
@@ -169,16 +167,19 @@ class Usables {
                             builder: (context,child){
                               return child!;
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right:8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
+                            child: GestureDetector(
+                              onTap: ontap,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right:8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  //margin:const EdgeInsets.all(),
+                                  height: 206,
+                                  child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
+                                  
                                 ),
-                                //margin:const EdgeInsets.all(),
-                                height: 206,
-                                child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
-                                
                               ),
                             ),
                             );

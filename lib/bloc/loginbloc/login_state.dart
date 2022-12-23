@@ -18,19 +18,7 @@ class LoginFailure extends LoginState {
 
 }
 
-class LogIn_errorstate extends LoginState{}
 
-class Email_errorstate extends LogIn_errorstate{
- String msg;
- Email_errorstate(this.msg);
-
-}
-
-class Pass_errorstate extends LogIn_errorstate{
-  String msg;
-  Pass_errorstate(this.msg);
-
-}
 
 class Login_successstate extends LoginState{}
 

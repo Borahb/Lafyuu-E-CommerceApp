@@ -34,9 +34,9 @@ class _ResubaleTextfieldState extends State<ResubaleTextfield> {
         padding: const EdgeInsets.only(left:16, right: 16,),
         child: TextFormField(
           validator: (value){
-              if (EmailValid.validate(value.toString()) == false){
-                  return 'Enter a valid Email';
-              }
+              // if (EmailValid.validate(value.toString()) == false){
+              //     return 'Enter a valid Email';
+              // }
               if (value!.isEmpty){
                 return "Enter Email";
               }

@@ -1,11 +1,20 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, import_of_legacy_library_into_null_safe
+// ignore_for_file: prefer_const_constructors_in_immutables, import_of_legacy_library_into_null_safe, prefer_const_constructors
+
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
+import 'package:lafyuu/Screens/FavoriteProductScreen/favouritescreen.dart';
+import 'package:lafyuu/Screens/HomeScreen/categoryview.dart';
+import 'package:lafyuu/Screens/HomeScreen/gridview.dart';
+import 'package:lafyuu/Screens/HomeScreen/productview.dart';
+import 'package:lafyuu/Screens/HomeScreen/searchbar.dart';
+import 'package:lafyuu/Screens/OfferScreen/offerscreen.dart';
 import 'package:lafyuu/Utils/Widgets/categorycard.dart';
 import 'package:lafyuu/Utils/Widgets/gridviewcard.dart';
 import 'package:lafyuu/Utils/Widgets/productcard.dart';
@@ -14,6 +23,7 @@ import 'package:lafyuu/Utils/Widgets/usables.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_event.dart';
 import 'package:lafyuu/models/categorymodel.dart';
+import 'package:lafyuu/models/favouriteproduct.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 
@@ -33,6 +43,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Usables usables = Usables();
   int _currentindex = 0;
   int pageno = 0;
+  final _product = ProductModel();
+  final _item = FavoriteProductModel();
+
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData ()async{
+    await Future.delayed(const Duration(seconds: 2));
+    final productdata = await rootBundle.loadString('assets/products.json');
+    final decodeddata = jsonDecode(productdata);
+    var product = decodeddata["products"];
+    ProductModel.products =  List.from(product)
+    .map<Product>((item) => Product.fromMap(item)).toList();
+    setState(() {
+      
+    });
+  }
   
   
 
@@ -92,161 +123,46 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
 
-      body: SafeArea(
+      body: (ProductModel.products != null && ProductModel.products.isNotEmpty) ? SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
-              children:[
-                  
-                  const SizedBox(height: 16,),
+              children:[                 
+                const SizedBox(height: 16,),
+                // search bar
+                SearchBar(),
 
-                  // search bar
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16,right:16),
-                    child: Row(
-                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 290 ,
-                          height: 46,
-                          child: TextField(
-                          
-                          decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(top:12,bottom:12,left:40,right:16),
-                          focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                          color: Colors.grey.shade200
-                            )
-                            ),
-                          border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-              
-                            ),
-                          hintText: 'Search Product',
-                          prefixIcon: Icon(Icons.search, color: colors.backgroundcolor)
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16,),
-                        Row(
-                          children: [
-                            SvgIcon(
-                              size: 24,
-                              color:colors.textcolor1,
-                              icon: const SvgIconData('images/love.svg')
-                              ),
-                              const SizedBox(width: 16,),
-                          GestureDetector(
-                          onTap: (){
-                            BlocProvider.of<AuthenticationBloc>(context).add(
-                              LoggedOut()
-                            );
-                          },
-                          child: SvgIcon(
-                            size: 24,
-                            color:colors.textcolor1,
-                            icon: const SvgIconData('images/Notification.svg')
-                            ),
-                        )
-                          ],
-                        ),
-                        
-
-
-                      ],
-                    ),
-                  ),
-
-
-                  const SizedBox(
+                const SizedBox(
                     height: 16,
                     child: Divider(),
-                    ),
+                  ),
                   
-                  // horizontal scrollable view
+                // horizontal scrollable view
 
-                  usables.banner(
+                usables.banner(
                   pageController,
                   pageno,
                   (index){
                           pageno = index;
                           setState(() {  
                           });
-                        }
+                        },
+                  (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> OfferScreen()));
+                  }
                   ),
 
-                  Container(height:48),
+                Container(height:48),
         
-                  usables.resuablerow('Category','More Category'),
-                
-                  Container(height:12),
-        
-                  Padding(
-                  padding: const EdgeInsets.only(left: 16,right:16),
-                  child: SizedBox(
-                    height:167,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: CategoryItem.category.length,
-                      itemBuilder: (context, index){
-                        return CategoryCard(category: CategoryItem.category[index]);
-                      },
-                    ),
-                  ),
-                ),
+                CategoryView(),
         
                 const SizedBox(height: 24,),
         
-                SizedBox(
-                  height: 271,
-                  width: 455,
-                  child: Column(
-                    children: [
-                      usables.resuablerow('Flash Sale','See More'),
-                      const SizedBox(height: 12,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16,right:16),
-                        child: SizedBox(
-                          height: 240,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: ProductModel.products.length,
-                            itemBuilder: (context,index){
-                              return ProductCard(product: ProductModel.products[index]);
-                            },
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                ProductView(name: 'Flash Sale', name2: 'See more'),
+
                 const SizedBox(height: 21,),
 
-                SizedBox(
-                  height: 271,
-                  width: 455,
-                  child: Column(
-                    children: [
-                      usables.resuablerow('Mega Sale','See More'),
-                      const SizedBox(height: 12,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16,right:16),
-                        child: SizedBox(
-                          height: 240,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: ProductModel.products.length,
-                            itemBuilder: (context,index){
-                              return ProductCard(product: ProductModel.products[index]);
-                            },
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                ProductView(name: 'Mega Sale', name2: 'See more'),
 
                 const SizedBox(height: 8,),
                 
@@ -297,24 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const SizedBox(height: 21,),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 16,right:16),
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap:true,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 13,
-                    mainAxisSpacing:12,
-                    mainAxisExtent: 290,
-                    
-                    ),
-                    itemCount: 4,
-                    itemBuilder: (context,index){
-                      return GridCard(product: ProductModel.products[index]);
-                    },
-                    ),
-                ),
+                ProductGridView(),
 
                 const SizedBox(height: 14,),
 
@@ -324,6 +223,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+      ) : const Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
