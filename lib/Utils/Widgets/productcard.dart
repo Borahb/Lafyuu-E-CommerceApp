@@ -4,7 +4,7 @@ import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class ProductCard extends StatelessWidget {
-  VoidCallback ontap;
+  final VoidCallback ontap;
   final Product product ;
   ProductCard({ Key? key, required this.product,required this.ontap }) : super(key: key);
 

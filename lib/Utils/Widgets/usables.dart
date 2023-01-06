@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lafyuu/Screens/HomeScreen/timerclock.dart';
 import 'package:lafyuu/Utils/colors.dart';
 
 class Usables {
@@ -28,24 +29,21 @@ class Usables {
     );
 
 // Resuable Row
-  Widget resuablerow (String name1, String name2) => Padding(
-        padding: const EdgeInsets.only(left: 16,right:16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:  [
-            Text(name1, style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: colors.textcolor2,
-              fontSize: 14
-            ),),
-            Text(name2, style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: colors.backgroundcolor,
-              fontSize: 14
-            ),)
-          ]
-        ),
-      );
+  Widget resuablerow (String name1, String name2) => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children:  [
+      Text(name1, style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: colors.textcolor2,
+        fontSize: 14
+      ),),
+      Text(name2, style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: colors.backgroundcolor,
+        fontSize: 14
+      ),)
+    ]
+  );
 
 // Product Card
   Widget productcard (String image) => Container(
@@ -170,15 +168,39 @@ class Usables {
                             child: GestureDetector(
                               onTap: ontap,
                               child: Padding(
-                                padding: const EdgeInsets.only(right:8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  //margin:const EdgeInsets.all(),
-                                  height: 206,
-                                  child: Image.asset('images/Offer Banner.jpg',fit: BoxFit.fill,),
-                                  
+                                padding: const EdgeInsets.only(right:2),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        image: const DecorationImage(
+                                          image: AssetImage('images/image 51.jpg'),
+                                          fit: BoxFit.fill,
+                                        )
+                                      ),
+                                     
+                                      height: 206, 
+                                    ),
+                                    Positioned(
+                                      top:36,
+                                      left:33,
+                                      right:101,
+                                      bottom: 98,
+                                      child: Text('Super Flash Sale \n50% Off', style:TextStyle(
+                                        color: colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w700
+                                      ))
+                                    ),
+                                    const Positioned(
+                                      top:133,
+                                      left:33,
+                                      //right:101,
+                                      bottom: 32,
+                                      child: CTimer()),
+                                    
+                                  ],
                                 ),
                               ),
                             ),

@@ -1,28 +1,18 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, import_of_legacy_library_into_null_safe, prefer_const_constructors
-
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
-import 'package:lafyuu/Screens/FavoriteProductScreen/favouritescreen.dart';
 import 'package:lafyuu/Screens/HomeScreen/categoryview.dart';
 import 'package:lafyuu/Screens/HomeScreen/gridview.dart';
 import 'package:lafyuu/Screens/HomeScreen/productview.dart';
 import 'package:lafyuu/Screens/HomeScreen/searchbar.dart';
 import 'package:lafyuu/Screens/OfferScreen/offerscreen.dart';
-import 'package:lafyuu/Utils/Widgets/categorycard.dart';
-import 'package:lafyuu/Utils/Widgets/gridviewcard.dart';
-import 'package:lafyuu/Utils/Widgets/productcard.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/Utils/Widgets/usables.dart';
-import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
-import 'package:lafyuu/bloc/auth_bloc/auth_event.dart';
-import 'package:lafyuu/models/categorymodel.dart';
 import 'package:lafyuu/models/favouriteproduct.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
@@ -136,7 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 16,
                     child: Divider(),
                   ),
-                  
                 // horizontal scrollable view
 
                 usables.banner(
@@ -158,11 +147,17 @@ class _HomeScreenState extends State<HomeScreen> {
         
                 const SizedBox(height: 24,),
         
-                ProductView(name: 'Flash Sale', name2: 'See more'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16,right:16),
+                  child: ProductView(name: 'Flash Sale', name2: 'See more'),
+                ),
 
                 const SizedBox(height: 21,),
 
-                ProductView(name: 'Mega Sale', name2: 'See more'),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16,right:16),
+                  child: ProductView(name: 'Mega Sale', name2: 'See more'),
+                ),
 
                 const SizedBox(height: 8,),
                 

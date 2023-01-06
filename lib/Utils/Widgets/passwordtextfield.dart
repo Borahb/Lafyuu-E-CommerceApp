@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Utils/colors.dart';
-import 'package:lafyuu/Utils/validator.dart';
+import 'package:lafyuu/Utils/Services/validator.dart';
 
 
 
