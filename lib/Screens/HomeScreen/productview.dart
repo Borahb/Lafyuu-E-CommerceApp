@@ -41,24 +41,21 @@ class ProductView extends StatelessWidget {
                             //   }
                             Navigator.push(context, MaterialPageRoute(builder:(context)=> ProductDetailScreen(
                               product: ProductModel.products[index],
-                            ontap: (){ 
-                            _item.products = _product;
-                            _item.add(item);
-                            },
+                        
                             )
                           )
                         );
                               
                             
                             
-                            } ,
-                            product: ProductModel.products[index]
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  ),
-                );
+                  } ,
+                  product: ProductModel.products[index]
+                  );
+                },
+              ),
+            )
+          ],
+        ),
+      );
   }
 }

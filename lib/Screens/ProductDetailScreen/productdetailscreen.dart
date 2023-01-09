@@ -8,6 +8,7 @@ import 'package:lafyuu/Utils/Widgets/SizeCard.dart';
 import 'package:lafyuu/Utils/Widgets/colorcard.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/colormodel.dart';
+import 'package:lafyuu/models/favouriteproduct.dart';
 import 'package:lafyuu/models/productmodel.dart';
 import 'package:lafyuu/models/sizemodel.dart';
 
@@ -16,8 +17,7 @@ import 'package:lafyuu/models/sizemodel.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
-  final VoidCallback ontap;
-  const ProductDetailScreen({ Key? key, required this.product, required this.ontap}) : super(key: key);
+  const ProductDetailScreen({ Key? key, required this.product}) : super(key: key);
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -28,7 +28,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   AppColors colors = AppColors();
  //Usables usables = Usables();
   int pageno = 0;
+  
 
+  
   @override
   Widget build(BuildContext context) {
 
@@ -137,7 +139,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children: [
 
-                    Productname(colors: colors, name: widget.product.name, ontap: widget.ontap),
+                    Productname(colors: colors, name: widget.product.name, product: widget.product,),
                     
                     const SizedBox(height: 8,),
 
@@ -455,30 +457,51 @@ class Selectsize extends StatelessWidget {
   }
 }
 
-class Productname extends StatelessWidget {
-  final VoidCallback ontap;
+class Productname extends StatefulWidget {
   final String name;
-  const Productname({
+  final Product product;
+  Productname({
     Key? key, required this.name,
     required this.colors,
-    required this.ontap
+    required this.product
   }) : super(key: key);
 
   final AppColors colors;
 
   @override
+  State<Productname> createState() => _ProductnameState();
+}
+
+class _ProductnameState extends State<Productname> {
+
+  final _item = FavoriteProductModel();
+  final _product = ProductModel();
+  
+
+  @override
   Widget build(BuildContext context) {
+    bool isinfav = _item.items.contains(widget.product) ?? false;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children:[
-        Text(name,style: TextStyle(
-          color: colors.textcolor2,
+        Text(widget.name,style: TextStyle(
+          color: widget.colors.textcolor2,
           fontSize: 20,
           fontWeight: FontWeight.bold
         ),),
         GestureDetector(
-          onTap: ontap,
-          child: const SvgIcon(icon: SvgIconData('images/love.svg')))
+          onTap: (){
+              if(!isinfav){
+            _item.products = _product;
+             _item.add(widget.product);
+              }
+             setState(() {
+               
+             });
+          },
+          child: isinfav ? SvgIcon(icon: const SvgIconData('images/iconmonstr-favorite-3.svg'),color: widget.colors.errorcolor ): SvgIcon(icon: const SvgIconData('images/iconmonstr-heart-thin3-1.svg'),color: widget.colors.textcolor1 )
+          )
       ]
     );
   }
