@@ -25,7 +25,7 @@ class _SearchBarState extends State<SearchBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            width: 290,
+            width: 243,
             height: 46,
             child: TextField(
               decoration: InputDecoration(

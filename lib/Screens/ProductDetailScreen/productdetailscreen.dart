@@ -154,7 +154,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     
                     const SizedBox(height: 24,),
 
-                    Selectsize(colors: colors),
+                    Selectsize(colors),
 
                     const SizedBox(height: 24,),
 
@@ -422,16 +422,16 @@ class Selectcolor extends StatelessWidget {
 }
 
 class Selectsize extends StatelessWidget {
-  const Selectsize({
-    Key? key,
-    required this.colors,
-    
-  }) : super(key: key);
+  const Selectsize(
+   
+    this.colors,
+  );
 
   final AppColors colors;
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
      crossAxisAlignment:CrossAxisAlignment.start,
       children: [
@@ -448,7 +448,7 @@ class Selectsize extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: SizeModel.size.length,
           itemBuilder: (context,index){
-            return SizeCard(size: SizeModel.size[index]);
+          return SizeCard(size: SizeModel.size[index],index:index);
           },
         ),
       ),
@@ -460,7 +460,7 @@ class Selectsize extends StatelessWidget {
 class Productname extends StatefulWidget {
   final String name;
   final Product product;
-  Productname({
+  const Productname({
     Key? key, required this.name,
     required this.colors,
     required this.product
@@ -471,7 +471,6 @@ class Productname extends StatefulWidget {
   @override
   State<Productname> createState() => _ProductnameState();
 }
-
 class _ProductnameState extends State<Productname> {
 
   final _item = FavoriteProductModel();

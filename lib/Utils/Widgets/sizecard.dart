@@ -4,8 +4,9 @@ import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/sizemodel.dart';
 
 class SizeCard extends StatefulWidget {
+  final int index;
   final SizeItem size;
-  const SizeCard({ Key? key,required this.size }) : super(key: key);
+  const SizeCard({ Key? key,required this.size, required this.index }) : super(key: key);
 
   @override
   State<SizeCard> createState() => _SizeCardState();
@@ -16,7 +17,11 @@ class _SizeCardState extends State<SizeCard> {
 
  
   AppColors colors = AppColors();
-  bool toggle = false;
+
+  
+  late var selecteditem = 0 ;
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +30,14 @@ class _SizeCardState extends State<SizeCard> {
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
             onTap: (){
-             // print('toggle');
-              
-              setState(() {
-                toggle =! toggle;
-              });
+            
+             selecteditem = widget.index;
+             //print(selecteditem);
                //print(toggle);
             },
             child: CircleAvatar(
             radius: 30,
-            backgroundColor: (toggle == true) ? colors.backgroundcolor : colors.light,
+            backgroundColor: (widget.index == selecteditem) ? colors.backgroundcolor : colors.light,
             child: CircleAvatar(
             backgroundColor: colors.white,
             radius: 29,

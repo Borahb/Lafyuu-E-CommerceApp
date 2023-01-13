@@ -14,7 +14,10 @@ class CategoryView extends StatelessWidget {
      
     return Column(
       children: [
-        usables.resuablerow('Category','More Category'),
+        Padding(
+          padding: const EdgeInsets.only(left: 16,right:16),
+          child: usables.resuablerow('Category','More Category'),
+        ),
                 
                 Container(height:12),
         

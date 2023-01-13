@@ -28,7 +28,7 @@ class _FavouriteProductlistState extends State<FavouriteProductlist> {
           mainAxisExtent: 300,
           
           ),
-          itemCount: _product.items?.length,
+          itemCount: _product.items.length,
           itemBuilder: (context,index){
             return Container(
           decoration: BoxDecoration(
@@ -72,22 +72,23 @@ class _FavouriteProductlistState extends State<FavouriteProductlist> {
                   Text('Rs 534,33',style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     color: colors.textcolor1,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.w700
                   ),),
                   const SizedBox(width: 8,),
                   Text('24% Off',style: TextStyle(
                     color: colors.errorcolor,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.w700
                   ),),
-                  const SizedBox(width: 18,),
+                  const SizedBox(width:13 ,),
                   GestureDetector(
                     onTap: (){
                       _product.remove(_product.items[index]);
                       setState(() {});
                     },
-                    child: Icon(Icons.delete,color: colors.textcolor1,))
+                    child: Icon(Icons.delete,color: colors.textcolor1,size: 18,)
+                    )
                 ],
               ),
 
