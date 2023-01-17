@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lafyuu/Screens/HomeScreen/timerclock.dart';
+import 'package:lafyuu/Screens/HomeScreen/Components/timerclock.dart';
 import 'package:lafyuu/Utils/colors.dart';
 
 class Usables {

@@ -4,15 +4,13 @@ import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/colormodel.dart';
 
 
-class ColorCard extends StatefulWidget {
+class ColorCard extends StatelessWidget {
   final Productcolor pcolor;
-  const ColorCard({ Key? key,required this.pcolor }) : super(key: key);
+  final int index;
+  final int selecteditem;
+  final ValueChanged onchanged;
+  ColorCard({ Key? key,required this.pcolor, required this.index, required this.selecteditem, required this.onchanged}) : super(key: key);
 
-  @override
-  State<ColorCard> createState() => _ColorCardState();
-}
-
-class _ColorCardState extends State<ColorCard> {
 
   AppColors colors = AppColors();
   bool toggle = false;
@@ -20,22 +18,17 @@ class _ColorCardState extends State<ColorCard> {
 
   @override
   Widget build(BuildContext context) {
+    final isselected = selecteditem == index;
     return Padding(
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
-            onTap: (){
-             
-              setState(() {
-                toggle =! toggle;
-              });
-               //print(toggle);
-            },
+            onTap: ()=> onchanged(index),
             child: CircleAvatar(
             radius: 30,
-            backgroundColor: widget.pcolor.color,
+            backgroundColor: pcolor.color,
             child: CircleAvatar(
               radius: 10,
-              backgroundColor: (toggle == true) ? colors.white : widget.pcolor.color,
+              backgroundColor: isselected ? colors.white : pcolor.color,
             ),
               ),
           ),
