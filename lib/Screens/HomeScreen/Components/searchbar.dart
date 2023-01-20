@@ -1,6 +1,8 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
+import 'package:lafyuu/Screens/Cart/cart.dart';
 import 'package:lafyuu/Screens/FavoriteProductScreen/favouritescreen.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
@@ -54,7 +56,7 @@ class _SearchBarState extends State<SearchBar> {
                       MaterialPageRoute(
                           builder: (context) => BlocProvider(
                                 create: (context) => FpBloc(),
-                                child: FavoriteProduct(),
+                                child: Cart(),
                               )));
                 },
                 child: SvgIcon(

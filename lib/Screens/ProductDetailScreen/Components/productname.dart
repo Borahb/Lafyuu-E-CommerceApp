@@ -46,7 +46,7 @@ class _ProductnameState extends State<Productname> {
                
              });
           },
-          child: isinfav ? SvgIcon(icon: const SvgIconData('images/iconmonstr-favorite-3.svg'),color: widget.colors.errorcolor ): SvgIcon(icon: const SvgIconData('images/iconmonstr-heart-thin3-1.svg'),color: widget.colors.textcolor1 )
+          child: isinfav ? SvgIcon(icon: const SvgIconData('images/lovered.svg'),color: widget.colors.errorcolor,size: 20, ): SvgIcon(icon: const SvgIconData('images/love.svg'),color: widget.colors.textcolor1 )
           )
       ]
     );

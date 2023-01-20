@@ -33,8 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Usables usables = Usables();
   int _currentindex = 0;
   int pageno = 0;
-  final _product = ProductModel();
-  final _item = FavoriteProductModel();
 
 
   @override
