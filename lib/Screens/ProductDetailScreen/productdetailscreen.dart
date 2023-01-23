@@ -83,7 +83,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     Image.asset('images/star.png',width: 96,height: 16,),
                     const SizedBox(height: 16,),
 
-                    Text('Rs 299,43',style: TextStyle(
+                    Text('Rs ${widget.product.price}',style: TextStyle(
                           color: colors.backgroundcolor,
                           fontSize: 20,
                           fontWeight: FontWeight.w700
@@ -99,7 +99,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                     const SizedBox(height: 24,),
 
-                    Productadd(colors: colors),
+                    Productadd(colors: colors, product: widget.product,),
 
 
 

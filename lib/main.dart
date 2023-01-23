@@ -6,6 +6,7 @@ import 'package:lafyuu/Screens/LoginScreen/loginscreen.dart';
 import 'package:lafyuu/Screens/SplashScreen/splashscreen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lafyuu/Screens/Tabbar/tabbar.dart';
 import 'package:lafyuu/Utils/Services/state_services.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_bloc.dart';
 import 'package:lafyuu/bloc/auth_bloc/auth_event.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocBuilder<AuthenticationBloc, AuthState>(builder: (context,state){
         if(state is Authenticated){
-          return HomeScreen();
+          return Tabbar();
         }
         if (state is UnAuthenticated){
           return LoginScreen(stateService: stateService);

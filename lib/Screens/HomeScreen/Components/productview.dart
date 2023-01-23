@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lafyuu/Screens/ProductDetailScreen/productdetailscreen.dart';
 import 'package:lafyuu/Utils/Widgets/productcard.dart';
 import 'package:lafyuu/Utils/Widgets/usables.dart';
-import 'package:lafyuu/models/favouriteproduct.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class ProductView extends StatelessWidget {
@@ -13,8 +12,7 @@ class ProductView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _item = FavoriteProductModel();
-    final _product = ProductModel();
+   
 
     Usables usables = Usables();
    
@@ -30,24 +28,15 @@ class ProductView extends StatelessWidget {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: ProductModel.products.length,
-                          itemBuilder: (context,index){
-                            
-                            final Product item = ProductModel.products[index];
-                            bool isInfav = _item.items.contains(item) ? true: false ;
+                          itemBuilder: (context,index){                                       
                             return ProductCard(
-                            ontap: (){
-                            //   if(isInfav == false){
-                           
-                            //   }
+                            ontap: (){                          
                             Navigator.push(context, MaterialPageRoute(builder:(context)=> ProductDetailScreen(
                               product: ProductModel.products[index],
                         
                             )
                           )
-                        );
-                              
-                            
-                            
+                        );        
                   } ,
                   product: ProductModel.products[index]
                   );

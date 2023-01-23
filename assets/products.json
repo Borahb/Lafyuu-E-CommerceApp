@@ -3,32 +3,38 @@
         {
             "id": 1,
             "image": "images/P1.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         },
         {
             "id": 2,
             "image": "images/P2.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         },
         {
             "id": 3,
             "image": "images/P3.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         },
         {
             "id": 4,
             "image": "images/mega1.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         },
         {
             "id": 5,
             "image": "images/mega3.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         },
         {
             "id": 6,
             "image": "images/mega3.jpg", 
-            "name": "FS - Nike Air\nMax 270 React..."
+            "name": "FS - Nike Air\nMax 270 React...",
+            "price":100
         }
     ]
 }

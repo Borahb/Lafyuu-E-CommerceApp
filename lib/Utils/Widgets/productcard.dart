@@ -38,7 +38,7 @@ class ProductCard extends StatelessWidget {
                   fontWeight: FontWeight.w700
                 ),),
                 const SizedBox(height: 8,),
-                Text('Rs 299,43',style: TextStyle(
+                Text('Rs ${product.price}',style: TextStyle(
                   color: colors.backgroundcolor,
                   fontSize: 12,
                   fontWeight: FontWeight.w700

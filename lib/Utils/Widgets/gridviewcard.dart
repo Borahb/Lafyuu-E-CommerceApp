@@ -51,7 +51,7 @@ class GridCard extends StatelessWidget {
               const SizedBox(height: 8,),
               Row(
                 children: [
-                  Text('Rs 534,33',style: TextStyle(
+                  Text('Rs ${product.price}',style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     color: colors.textcolor1,
                     fontSize: 12,

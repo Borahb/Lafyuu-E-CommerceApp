@@ -7,14 +7,20 @@ import 'package:lafyuu/Screens/Cart/Components/checkoutbutton.dart';
 import 'package:lafyuu/Screens/Cart/Components/coupobbar.dart';
 import 'package:lafyuu/Screens/Cart/Components/totalprice.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/models/cartmodel.dart';
 
 
-class Cart extends StatelessWidget {
-  Cart({ Key? key }) : super(key: key);
+class Cart extends StatefulWidget {
+  const Cart({ Key? key }) : super(key: key);
 
+  @override
+  State<Cart> createState() => _CartState();
+}
 
+class _CartState extends State<Cart> {
   final AppColors colors = AppColors();
-  
+
+  final _product = CartProductModel();
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +44,10 @@ class Cart extends StatelessWidget {
                   padding: const EdgeInsets.only(left:16,right:16,),
                   child: Column(
                     children: [
-                      ListView.builder(
-                        shrinkWrap:true,
-                        itemCount: 2,
-                        itemBuilder: (context,index){
-                          return CartProduct(colors: colors);
-                        }),
+
+
+                      CartProduct(colors: colors),
+                        
 
                       Couponbar(width: width, colors: colors),
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:lafyuu/Screens/ProductDetailScreen/productdetailscreen.dart';
 import 'package:lafyuu/Utils/Widgets/gridviewcard.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
@@ -22,7 +23,12 @@ class ProductGridView extends StatelessWidget {
                     ),
                     itemCount: 4,
                     itemBuilder: (context,index){
-                      return GridCard(product: ProductModel.products[index]);
+                      return GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=> ProductDetailScreen(
+                              product: ProductModel.products[index])));
+                        },
+                        child: GridCard(product: ProductModel.products[index]));
                     },
                     ),
                 );

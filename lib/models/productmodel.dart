@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, null_closures
 import 'dart:convert';
 
-
 class ProductModel {
 
   static final pModel = ProductModel._internal();
@@ -28,11 +27,13 @@ class Product {
   final int id;
   final String name;
   final String image;
+  final num price;
 
   Product({
     required this.id,
     required this.name,
     required this.image,
+    required this.price
   });
 
 
@@ -40,11 +41,13 @@ class Product {
     int? id,
     String? name,
     String? image,
+    num? price,
   }) {
     return Product(
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
+      price: price ?? this.price,
     );
   }
 
@@ -53,6 +56,7 @@ class Product {
       'id': id,
       'name': name,
       'image': image,
+      'price': price,
     };
   }
 
@@ -61,6 +65,7 @@ class Product {
       id: map['id'] as int,
       name: map['name'] as String,
       image: map['image'] as String,
+      price: map['price'] as num,
     );
   }
 
@@ -69,7 +74,9 @@ class Product {
   factory Product.fromJson(String source) => Product.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Product(id: $id, name: $name, image: $image)';
+  String toString() {
+    return 'Product(id: $id, name: $name, image: $image, price: $price)';
+  }
 
   @override
   bool operator ==(covariant Product other) {
@@ -78,9 +85,15 @@ class Product {
     return 
       other.id == id &&
       other.name == name &&
-      other.image == image;
+      other.image == image &&
+      other.price == price;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ image.hashCode;
+  int get hashCode {
+    return id.hashCode ^
+      name.hashCode ^
+      image.hashCode ^
+      price.hashCode;
+  }
 }

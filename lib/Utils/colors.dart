@@ -9,5 +9,6 @@ class AppColors {
   final textcolor1 = const Color(0xff9098B1);
   final textcolor2 = const Color(0xff223263);
   final light = const Color(0xffEBF0FF);
+  final green = const Color(0xff4caf50);
 
 }

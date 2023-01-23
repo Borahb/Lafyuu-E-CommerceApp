@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/categoryview.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/gridview.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/productview.dart';
@@ -13,7 +12,6 @@ import 'package:lafyuu/Screens/HomeScreen/Components/searchbar.dart';
 import 'package:lafyuu/Screens/OfferScreen/offerscreen.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/Utils/Widgets/usables.dart';
-import 'package:lafyuu/models/favouriteproduct.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 
@@ -31,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   AppColors colors = AppColors();
   TextEditingController searchcontroller = TextEditingController();
   Usables usables = Usables();
-  int _currentindex = 0;
   int pageno = 0;
 
 
@@ -62,55 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
     return Scaffold(
-
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentindex,
-        iconSize: 24,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home,),
-            label:'Home',
-             
-
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.search,),
-            label:'Explore',
-             
-
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart,),
-            label:'Cart',
-             
-
-            ),
-            BottomNavigationBarItem(
-            icon: SvgIcon(
-              icon: SvgIconData('images/Offer.svg',),
-              
-            ),
-            label:'Offer',
-             
-
-            ),
-            
-            BottomNavigationBarItem(
-            icon: Icon(Icons.person,),
-            label:'Account',
-             
-
-            ),
-
-        ],
-        onTap: (index){
-            setState(() {
-              _currentindex = index;
-            });
-        },
-      ),
-
       body: (ProductModel.products != null && ProductModel.products.isNotEmpty) ? SafeArea(
         child: SingleChildScrollView(
           child: Center(
