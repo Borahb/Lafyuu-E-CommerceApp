@@ -21,10 +21,13 @@ class _CartState extends State<Cart> {
   final AppColors colors = AppColors();
 
   final _product = CartProductModel();
+  int ship = 120;
+  int import = 120;
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -40,7 +43,9 @@ class _CartState extends State<Cart> {
 
                 const SizedBox(height: 16,),
 
-                Padding(
+
+
+                _product.items.isNotEmpty ? Padding(
                   padding: const EdgeInsets.only(left:16,right:16,),
                   child: Column(
                     children: [
@@ -63,15 +68,15 @@ class _CartState extends State<Cart> {
                           padding: const EdgeInsets.all(16),
                           child: Column(
                             children: [
-                              Billspecification(colors: colors,spec1:'Items (3)' ,spec2:'Rs 598',),
+                              Billspecification(colors: colors,spec1:'Items (${_product.items.length.toString()})' ,spec2:'Rs ${_product.totalPrice}',),
 
                               const SizedBox(height: 16,),
 
-                              Billspecification(colors: colors,spec1:'Shipping' ,spec2:'Rs 598',),
+                              Billspecification(colors: colors,spec1:'Shipping' ,spec2:'Rs ${ship.toString()}',),
 
                               const SizedBox(height: 16,),
 
-                              Billspecification(colors: colors,spec1:'Import charges' ,spec2:'Rs 598',),
+                              Billspecification(colors: colors,spec1:'Import charges' ,spec2:'Rs ${import.toString()}',),
                       
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -79,7 +84,7 @@ class _CartState extends State<Cart> {
                                 child: Divider(color:colors.light,)),
                               ),
 
-                              Totalprice(colors: colors,spec1: 'Total Price', spec2: 'Rs 128',)
+                              Totalprice(colors: colors,spec1: 'Total Price', spec2: 'Rs ${_product.totalPrice + ship + import}',)
                              
                           ],),
                         ),
@@ -91,13 +96,18 @@ class _CartState extends State<Cart> {
 
                     ],
                   ),
-                ),
+                ): Center(child:Text('There is nothing in your cart.',style:TextStyle(
+          color: colors.textcolor1,
+          fontWeight: FontWeight.w700,
+          fontSize: 16
+        )) ,) ,
 
             ],
             ),
         ),
       ),
-    );
+    ); 
+    
   }
 }
 

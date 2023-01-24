@@ -30,6 +30,13 @@ class CartProductModel {
   //get items in favoriteproduct
   List<Product> get items => _productid.map((id) => _product.getById(id)).toList();
 
+  // get total price
+
+  num get totalPrice => 
+    items.fold(0, (total, current) => total + current.price);
+  
+  
+  
   //add product
 
   void add (Product product){
