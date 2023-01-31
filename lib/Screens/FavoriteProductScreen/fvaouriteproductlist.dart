@@ -47,13 +47,13 @@ class _FavouriteProductlistState extends State<FavouriteProductlist> {
               decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
-                image: AssetImage(_product.items[index].image),
+                image: NetworkImage(_product.items[index].image),
                 fit: BoxFit.fill
                   )
               ),
               ),
               const SizedBox(height: 8,),
-              Text(_product.items[index].name,style: TextStyle(
+              Text(_product.items[index].title,style: TextStyle(
                 color: colors.textcolor2,
                 fontSize: 12,
                 fontWeight: FontWeight.w700

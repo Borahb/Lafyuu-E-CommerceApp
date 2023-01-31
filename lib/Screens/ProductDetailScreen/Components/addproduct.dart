@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/productview.dart';
+import 'package:lafyuu/Screens/Review/review.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/cartmodel.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class Productadd extends StatefulWidget {
@@ -98,7 +100,7 @@ class _ProductaddState extends State<Productadd> {
 
         Wrap(
           children: [ 
-            Text('The Nike Air Max 270 React ENG combines a full-length React foam midsole with a 270 Max Air unit for unrivaled comfort and a striking visual experience.',style: TextStyle(
+            Text(widget.product.description,style: TextStyle(
               color: widget.colors.textcolor2,
               fontSize: 12,
               fontWeight: FontWeight.w400
@@ -115,11 +117,16 @@ class _ProductaddState extends State<Productadd> {
             fontSize: 14,
             fontWeight: FontWeight.w700
             ),),
-            Text('See More',style: TextStyle(
-            color: widget.colors.backgroundcolor,
-            fontSize: 14,
-            fontWeight: FontWeight.w700
-            ),),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Review()));
+              },
+              child: Text('See More',style: TextStyle(
+              color: widget.colors.backgroundcolor,
+              fontSize: 14,
+              fontWeight: FontWeight.w700
+              ),),
+            ),
           ],
         ),
 

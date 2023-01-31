@@ -1,4 +1,5 @@
 
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class FavoriteProductModel {

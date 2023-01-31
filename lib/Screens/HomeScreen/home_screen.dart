@@ -10,9 +10,12 @@ import 'package:lafyuu/Screens/HomeScreen/Components/gridview.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/productview.dart';
 import 'package:lafyuu/Screens/HomeScreen/Components/searchbar.dart';
 import 'package:lafyuu/Screens/OfferScreen/offerscreen.dart';
+import 'package:lafyuu/Utils/Services/app_urls.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/Utils/Widgets/usables.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -40,10 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   loadData ()async{
     await Future.delayed(const Duration(seconds: 2));
-    final productdata = await rootBundle.loadString('assets/products.json');
-    final decodeddata = jsonDecode(productdata);
-    var product = decodeddata["products"];
-    ProductModel.products =  List.from(product)
+    final productdata = await http.get(Uri.parse(AppUrl.product));
+    final decodeddata = jsonDecode(productdata.body.toString());
+    //var product = decodeddata["products"];
+    ProductModel.products =  List.from(decodeddata)
     .map<Product>((item) => Product.fromMap(item)).toList();
     setState(() {
       

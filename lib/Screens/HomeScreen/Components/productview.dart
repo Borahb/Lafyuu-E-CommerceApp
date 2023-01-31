@@ -17,14 +17,14 @@ class ProductView extends StatelessWidget {
     Usables usables = Usables();
    
     return SizedBox(
-                  height: 271,
+                  height: 298,
                   width: 455,
                   child: Column(
                     children: [
                       usables.resuablerow(name,name2),
                       const SizedBox(height: 12,),
                       SizedBox(
-                        height: 240,
+                        height: 270,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: ProductModel.products.length,
@@ -33,6 +33,7 @@ class ProductView extends StatelessWidget {
                             ontap: (){                          
                             Navigator.push(context, MaterialPageRoute(builder:(context)=> ProductDetailScreen(
                               product: ProductModel.products[index],
+                              index: index,
                         
                             )
                           )

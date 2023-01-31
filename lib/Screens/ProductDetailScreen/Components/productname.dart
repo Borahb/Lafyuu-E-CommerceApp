@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:lafyuu/Utils/colors.dart';
 import 'package:lafyuu/models/favouriteproduct.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class Productname extends StatefulWidget {
+  final int index;
   final String name;
   final Product product;
   const Productname({
     Key? key, required this.name,
     required this.colors,
-    required this.product
+    required this.product,
+    required this.index
   }) : super(key: key);
 
   final AppColors colors;
@@ -31,16 +34,20 @@ class _ProductnameState extends State<Productname> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children:[
-        Text(widget.name,style: TextStyle(
-          color: widget.colors.textcolor2,
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),),
+        Flexible(
+          child: Text(widget.name,style: TextStyle(
+            color: widget.colors.textcolor2,
+            fontSize: 20,
+            fontWeight: FontWeight.bold
+          ),),
+        ),
         GestureDetector(
           onTap: (){
               if(!isinfav){
             _item.products = _product;
              _item.add(widget.product);
+              }else{
+                _item.remove(_item.items[widget.index]);
               }
              setState(() {
                

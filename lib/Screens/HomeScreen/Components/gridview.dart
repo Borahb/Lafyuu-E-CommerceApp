@@ -26,7 +26,9 @@ class ProductGridView extends StatelessWidget {
                       return GestureDetector(
                         onTap: (){
                           Navigator.push(context, MaterialPageRoute(builder:(context)=> ProductDetailScreen(
-                              product: ProductModel.products[index])));
+                              product: ProductModel.products[index],
+                              index: index,
+                              )));
                         },
                         child: GridCard(product: ProductModel.products[index]));
                     },

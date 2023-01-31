@@ -8,13 +8,15 @@ import 'package:lafyuu/Screens/ProductDetailScreen/Components/productname.dart';
 import 'package:lafyuu/Screens/ProductDetailScreen/Components/selecrcolor.dart';
 import 'package:lafyuu/Screens/ProductDetailScreen/Components/selectsize.dart';
 import 'package:lafyuu/Utils/colors.dart';
-import 'package:lafyuu/models/productmodel.dart';
+import 'package:lafyuu/models/productmod.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
 
 class ProductDetailScreen extends StatefulWidget {
+  final int index;
   final Product product;
-  const ProductDetailScreen({ Key? key, required this.product}) : super(key: key);
+  const ProductDetailScreen({ Key? key, required this.product, required this.index}) : super(key: key);
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -48,11 +50,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           child: Icon(Icons.arrow_back_ios,color: colors.textcolor1,size: 20,)
                           ),
                         const SizedBox(width: 12,),
-                        Text('Nike Air Max 270 Rea...',style:TextStyle(
+                        Text(widget.product.title.substring(0,10)+ '...',
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        style:TextStyle(
                           color: colors.textcolor2,
                           fontWeight: FontWeight.w700,
                           fontSize: 16
-                        ))
+                        ),
+                        )
                           ],
                         ),
         
@@ -76,11 +82,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children: [
 
-                    Productname(colors: colors, name: widget.product.name, product: widget.product,),
+                    Productname(index: widget.index,colors: colors, name: widget.product.title, product: widget.product,),
                     
                     const SizedBox(height: 8,),
 
-                    Image.asset('images/star.png',width: 96,height: 16,),
+                    RatingBar(
+                      itemSize: 20,
+                      initialRating: 3,
+                      direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      ratingWidget: RatingWidget(
+                      full: Image.asset('images/Star 6.png'),
+                      half: Image.asset('images/Star 6.png'),
+                      empty: Image.asset('images/Star 10.png'),
+                      ),
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 3.0),
+                      onRatingUpdate: (rating) {
+                        //print(rating);
+                      },
+                      ),
+
+                    //Image.asset('images/star.png',width: 96,height: 16,),
                     const SizedBox(height: 16,),
 
                     Text('Rs ${widget.product.price}',style: TextStyle(

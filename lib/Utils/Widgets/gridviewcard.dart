@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class GridCard extends StatelessWidget {
@@ -29,13 +30,13 @@ class GridCard extends StatelessWidget {
               decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
-                image: AssetImage(product.image),
+                image: NetworkImage(product.image),
                 fit: BoxFit.fill
                   )
               ),
               ),
               const SizedBox(height: 8,),
-              Text(product.name,style: TextStyle(
+              Text(product.title,style: TextStyle(
                 color: colors.textcolor2,
                 fontSize: 12,
                 fontWeight: FontWeight.w700

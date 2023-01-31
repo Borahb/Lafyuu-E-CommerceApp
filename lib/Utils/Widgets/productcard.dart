@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class ProductCard extends StatelessWidget {
@@ -16,7 +17,7 @@ class ProductCard extends StatelessWidget {
       child: GestureDetector(
         onTap: ontap ,
         child: Container(
-          height:231 ,
+          height:250 ,
           width: 141,
           
           decoration: BoxDecoration(
@@ -30,9 +31,9 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(product.image,height: 109,width:109),
+                Image.network(product.image,height: 109,width:109),
                 const SizedBox(height: 8,),
-                Text(product.name,style: TextStyle(
+                Text(product.title,style: TextStyle(
                   color: colors.textcolor2,
                   fontSize: 12,
                   fontWeight: FontWeight.w700

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lafyuu/Utils/colors.dart';
+import 'package:lafyuu/models/productmod.dart';
 import 'package:lafyuu/models/productmodel.dart';
 
 class ProductImages extends StatefulWidget {
@@ -43,7 +44,7 @@ class _ProductImagesState extends State<ProductImages> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       
-                                      image: DecorationImage(image: AssetImage(widget.product.image),fit: BoxFit.fill),
+                                      image: DecorationImage(image: NetworkImage(widget.product.image),fit: BoxFit.fill),
                                     ),
                                     //margin:const EdgeInsets.all(),
                                     height: 238,
