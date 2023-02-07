@@ -31,24 +31,24 @@ class _SearchbarState extends State<Searchbar> {
               Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchBar()));
             },
             child: Container(
-                width: 243,
-                height: 46,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: colors.light)
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16,),
-                    Icon(Icons.search,color:colors.backgroundcolor),
-                    const SizedBox(width: 8,),
-                    Text('Search Product',style: TextStyle(
-                      color: colors.textcolor1,
-                      fontSize: 12
-                    ),)
-                  ],
-                )
+              width: 243,
+              height: 46,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: colors.light)
               ),
+              child: Row(
+                children: [
+                  const SizedBox(width: 16,),
+                  Icon(Icons.search,color:colors.backgroundcolor),
+                  const SizedBox(width: 8,),
+                  Text('Search Product',style: TextStyle(
+                    color: colors.textcolor1,
+                    fontSize: 12
+                  ),)
+                ],
+              )
+            ),
           ),
           const SizedBox(
             width: 16,
@@ -75,7 +75,7 @@ class _SearchbarState extends State<Searchbar> {
               ),
               GestureDetector(
                 onTap: () {
-                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                 // BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
                 },
                 child: SvgIcon(
                     size: 24,
@@ -89,3 +89,33 @@ class _SearchbarState extends State<Searchbar> {
     );
   }
 }
+
+// class ProductSearch extends SearchDelegate<String>{
+//   @override
+//   List<Widget>? buildActions(BuildContext context) {
+//     return [IconButton(icon: const Icon(Icons.clear), onPressed: (){},)];
+    
+//   }
+
+//   @override
+//   Widget? buildLeading(BuildContext context) {
+//     return IconButton(
+//       icon: AnimatedIcon(
+//         icon:AnimatedIcons.menu_arrow , 
+//         progress: transitionAnimation,), 
+//         onPressed:(){});
+//   }
+
+//   @override
+//   Widget buildResults(BuildContext context) {
+//     // TODO: implement buildResults
+//     throw UnimplementedError();
+//   }
+
+//   @override
+//   Widget buildSuggestions(BuildContext context) {
+//     // TODO: implement buildSuggestions
+//     throw UnimplementedError();
+//   }
+
+// }

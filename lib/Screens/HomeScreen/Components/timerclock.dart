@@ -42,7 +42,7 @@ Duration myDuration = Duration(hours: 8);
   @override
   void initState() {
     super.initState();
-    startTimer();
+    //startTimer();
   }
 
 

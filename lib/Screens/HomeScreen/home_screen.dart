@@ -48,9 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //var product = decodeddata["products"];
     ProductModel.products =  List.from(decodeddata)
     .map<Product>((item) => Product.fromMap(item)).toList();
-    setState(() {
-      
-    });
+    setState((){});
   }
   
   
@@ -69,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children:[                 
                 const SizedBox(height: 16,),
                 // search bar
-                SearchBar(),
+                Searchbar(),
 
                 const SizedBox(
                     height: 16,
